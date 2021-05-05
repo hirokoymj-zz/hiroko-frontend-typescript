@@ -1,41 +1,25 @@
-<h1>hirokoymj.com</h1>
+### Converting React app to TypeScript for hirokoymj.com
 
-## URL
+# React+TypeScript Cheatsheets
 
-https://www.hirokoymj.com
+## Basic Prop Types Examples
 
-## Back-end
+https://github.com/typescript-cheatsheets/react#basic-prop-types-examples
 
-**Apollo Server**
+## Useful React Prop Type Examples
 
-https://hirokoymj-backend.herokuapp.com/
+https://github.com/typescript-cheatsheets/react#useful-react-prop-type-examples
 
-**Back-end repository**
+### TypeScript - Basic Types
 
-https://github.com/hirokoymj/hirokoymj-backend
+https://www.typescriptlang.org/docs/handbook/basic-types.html
 
-## Database
+## References:
 
-[MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+https://github.com/typescript-cheatsheets/react#useful-react-prop-type-examples
 
-## Cloud Server
+- https://www.sitepoint.com/how-to-migrate-a-react-app-to-typescript/
 
-[Heroku](https://dashboard.heroku.com/apps)
+- [Create React App - Adding TypeScript](https://create-react-app.dev/docs/adding-typescript/)
 
-## Technologies
-
-**Front-end**
-
-- React, Redux, Redux-Form, React-Router, Apollo Client, Lodash, Moment.js, Google Map API, OpenWeatherMap API, Express.js(Live Server), Enfoced HTTPS
-
-**Back-end**
-
-- Apollo Server, GraphQL, MongoDB, Mongoose, REST API, dotEnv
-
-## Screenshot - desktop
-
-![](src/Assets/hirokoymj-com-desktop.png)
-
-## Screenshot - mobile
-
-![](src/Assets/hirokoymj-com-mobile.png)
+- [Material UI - TypeScript](https://material-ui.com/guides/typescript/)

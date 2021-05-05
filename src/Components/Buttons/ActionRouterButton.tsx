@@ -23,7 +23,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ActionRouterButton = ({ to, title, icon }) => {
+type Props = {
+  to: string;
+  title: string;
+  icon: string;
+};
+
+export const ActionRouterButton = ({ to, title, icon }: Props) => {
   const classes = useStyles();
 
   return (
@@ -32,8 +38,7 @@ export const ActionRouterButton = ({ to, title, icon }) => {
       to={{
         pathname: to,
         state: { title },
-      }}
-    >
+      }}>
       <IconButton classes={{ root: classes.iconButtonRoot }}>
         <Icon classes={{ root: classes.svgIconRoot }}>{icon}</Icon>
       </IconButton>

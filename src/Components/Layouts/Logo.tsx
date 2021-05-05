@@ -1,10 +1,10 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   logo: {
     textDecoration: "none !important",
   },
@@ -27,8 +27,7 @@ export const Logo = () => {
     <Link
       component={RouterLink}
       to={{ pathname: "/", state: { title: "7 days Forecast" } }}
-      className={classes.logo}
-    >
+      className={classes.logo}>
       <Typography variant="h6" component="h1">
         <span className={classes.boldFont}>hiroko</span>
         <span className={classes.lightFont}>ymj.com</span>

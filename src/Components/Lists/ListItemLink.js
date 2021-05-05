@@ -52,9 +52,3 @@ export const ListLink = ({ icon, text, to }) => {
     </ListItem>
   );
 };
-
-ListItemLink.propTypes = {
-  icon: PropTypes.element,
-  text: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
-};

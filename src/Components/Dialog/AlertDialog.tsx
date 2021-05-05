@@ -3,88 +3,96 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    top: 0,
-    height: "calc(100% - 20px)",
-    maxHeight: "calc(100% - 20px)",
-    right: 0,
-    width: "400px",
-    overflowY: "hidden",
-    position: "fixed",
-    margin: "9px",
-    [theme.breakpoints.down("sm")]: {
-      height: "100%",
-      width: "auto",
-    },
-  },
+const useStyles = makeStyles((theme: Theme) => ({
   titleRoot: {
     borderBottom: `1px solid ${theme.palette.grey[400]}`,
     textAlign: "center",
+    padding: theme.spacing(1),
   },
   closeButton: {
     position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
+    padding: "6px",
   },
   actionButton: {
-    width: "50%",
+    width: "25%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   actionsRoot: {
     borderTop: `1px solid ${theme.palette.grey[400]}`,
     padding: theme.spacing(2, 3),
+    justifyContent: "center",
+  },
+  contentRoot: {
+    minHeight: "100px",
+    padding: theme.spacing(3),
+  },
+  contentTextRoot: {
+    color: theme.palette.common.black,
   },
 }));
 
-export const DrawerDialog = ({
+type Props = {
+  open: boolean;
+  title: string;
+  content: string;
+  action: () => void;
+  actionLabel: string;
+  onClose: React.MouseEventHandler<HTMLButtonElement> | undefined;
+};
+
+export const AlertDialog = ({
   open,
   title,
+  content,
+  action,
+  actionLabel,
   onClose,
-  children,
-  submitLabel,
-  onSubmit,
-  submitting,
-}) => {
+}: Props) => {
   const classes = useStyles();
 
   return (
-    <Dialog open={open} onClose={onClose} classes={{ paper: classes.paper }}>
+    <Dialog open={open} onClose={onClose} fullWidth>
       <DialogTitle classes={{ root: classes.titleRoot }}>
         <Typography variant="h6">{title}</Typography>
         <IconButton
           aria-label="close"
           className={classes.closeButton}
-          onClick={onClose}
-        >
+          onClick={onClose}>
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      <DialogContent>{children}</DialogContent>
+      <DialogContent classes={{ root: classes.contentRoot }}>
+        <DialogContentText classes={{ root: classes.contentTextRoot }}>
+          {content}
+        </DialogContentText>
+      </DialogContent>
       <DialogActions classes={{ root: classes.actionsRoot }}>
         <Button
           color="primary"
           variant="outlined"
           className={classes.actionButton}
-          onClick={onClose}
-        >
+          onClick={onClose}>
           Cancel
         </Button>
         <Button
           type="submit"
           variant="contained"
           color="primary"
-          disabled={submitting}
-          onClick={onSubmit}
-          className={classes.actionButton}
-        >
-          {submitLabel}
+          onClick={action}
+          className={classes.actionButton}>
+          {actionLabel}
         </Button>
       </DialogActions>
     </Dialog>

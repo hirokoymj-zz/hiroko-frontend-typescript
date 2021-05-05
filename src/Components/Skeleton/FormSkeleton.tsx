@@ -1,19 +1,19 @@
 import React from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing }: Theme) => ({
   title: {
-    marginBottom: theme.spacing(1),
+    marginBottom: spacing(1),
   },
   fieldItem: {
-    marginBottom: theme.spacing(2),
+    marginBottom: spacing(2),
     height: "45px",
     width: "100%",
   },
   button: {
-    borderRadius: theme.spacing(1),
+    borderRadius: spacing(1),
   },
 }));
 
