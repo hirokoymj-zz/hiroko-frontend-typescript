@@ -51,7 +51,11 @@ const useLoadMore = (loading, error, fetchMore, pageInfo) => {
   return { fetchMoreData, isLoadingMore, hasNextPage };
 };
 
-export const CategoryTable = ({ openDialog }) => {
+type Props = {
+  openDialog: (e: React.MouseEvent<HTMLButtonElement>, id: string) => void,
+};
+
+export const CategoryTable: React.FC<Props> = ({ openDialog }: Props) => {
   const classes = useStyles();
   const {
     category_loading,

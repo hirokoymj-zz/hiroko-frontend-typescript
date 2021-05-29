@@ -8,14 +8,14 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import red from "@material-ui/core/colors/red";
 import blue from "@material-ui/core/colors/blue";
 
 import { DAILY_FORECAST } from "Queries/Weather";
 import { DailyForecastSkeleton } from "Components/Skeleton/WeatherSkeleton";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   forecastDate: {
     width: "20%",
     textAlign: "left",
@@ -43,7 +43,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const DailyForecast = ({ city, unit }) => {
+type Props = {
+  city: string;
+  unit?: string;
+};
+
+export const DailyForecast: React.FC<Props> = ({ city, unit }: Props) => {
   const classes = useStyles();
   const { data, loading } = useQuery(DAILY_FORECAST, {
     variables: {
@@ -98,8 +103,7 @@ export const DailyForecast = ({ city, unit }) => {
                     <ListItem
                       divider={index !== mappedDataLen - 1 ? true : false}
                       dense
-                      key={dt}
-                    >
+                      key={dt}>
                       <ListItemText
                         primary={moment.unix(dt).format("ddd, MM/DD")}
                         className={classes.forecastDate}

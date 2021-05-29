@@ -5,7 +5,7 @@ export const CREATE_CATEGORY = gql`
     createCategory(input: $input) {
       id
       name
-      order
+      abbr
       createdAt
       updatedAt
     }

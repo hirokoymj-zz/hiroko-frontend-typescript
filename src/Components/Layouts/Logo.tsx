@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const Logo = () => {
+export const Logo: React.FC = () => {
   const classes = useStyles();
 
   return (

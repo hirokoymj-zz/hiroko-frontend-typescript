@@ -31,25 +31,25 @@ export const TechNavItems = ({ setDrawerClosed }) => {
         to="/tech"
         text="Tech References"
         icon={<LibraryBooksOutlinedIcon />}
-        onClick={setDrawerClosed && setDrawerClosed}
+        onClick={setDrawerClosed ? setDrawerClosed : null}
       />
       <ListItemLink
         to="/categoryList"
         text="Category"
         icon={<ViewAgendaOutlinedIcon />}
-        onClick={setDrawerClosed && setDrawerClosed}
+        onClick={setDrawerClosed ? setDrawerClosed : null}
       />
       <ListItemLink
         to="/subCategoryList"
         text="Sub Category"
         icon={<AccountTreeOutlinedIcon />}
-        onClick={setDrawerClosed && setDrawerClosed}
+        onClick={setDrawerClosed ? setDrawerClosed : null}
       />
       <ListItemLink
         to="/topicList"
         text="Topic"
         icon={<DescriptionOutlinedIcon />}
-        onClick={setDrawerClosed && setDrawerClosed}
+        onClick={setDrawerClosed ? setDrawerClosed : null}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { reduxForm, Field } from "redux-form";
@@ -20,7 +20,7 @@ import { config } from "Config/config";
 import { CURRENT_WEATHER_BY_CITY } from "Queries/Weather";
 import { CurrentWeatherInfoSkeleton } from "Components/Skeleton/WeatherSkeleton";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   searchForm: {
     display: "flex",
     flexDirection: "row",
@@ -79,8 +79,7 @@ const CitySearchForm = reduxForm({
           variant="contained"
           color="primary"
           disabled={submitting}
-          className={classes.searchButton}
-        >
+          className={classes.searchButton}>
           {submitting ? "Searching" : "Search"}
         </Button>
       </form>
@@ -88,7 +87,11 @@ const CitySearchForm = reduxForm({
   );
 });
 
-const CurrentWeatherInfo = ({ city }) => {
+type Props = {
+  city: string;
+};
+
+const CurrentWeatherInfo: React.FC<Props> = ({ city }: Props) => {
   const classes = useStyles();
   const { data, loading } = useQuery(CURRENT_WEATHER_BY_CITY, {
     variables: {
@@ -125,8 +128,7 @@ const CurrentWeatherInfo = ({ city }) => {
               <Typography
                 variant="h4"
                 gutterBottom
-                className={classes.cityCountry}
-              >
+                className={classes.cityCountry}>
                 {cityCountry}
               </Typography>
             </Grid>
@@ -159,7 +161,7 @@ export const DailyForecastView = () => {
   const [geo_lat, setLat] = useState(TOKYO_LOCATION.lat);
   const [geo_lon, setLon] = useState(TOKYO_LOCATION.lon);
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: object) => {
     try {
       const city = get(values, "myCity.myCity.name", "");
       const lat = get(values, "myCity.myCity.coord.lat", 0);

@@ -14,6 +14,16 @@ https://github.com/typescript-cheatsheets/react#useful-react-prop-type-examples
 
 https://www.typescriptlang.org/docs/handbook/basic-types.html
 
+## Installation
+
+```js
+npm install --save @types/react-redux
+```
+
+## Using Apollo with TypeScript
+
+https://www.apollographql.com/docs/react/development-testing/static-typing/
+
 ## References:
 
 https://github.com/typescript-cheatsheets/react#useful-react-prop-type-examples

@@ -54,8 +54,7 @@ const CategoryFormFields = ({ onSubmit, submitting }) => {
         color="primary"
         disabled={submitting}
         onClick={onSubmit}
-        className={classes.button}
-      >
+        className={classes.button}>
         {submitting ? "Submitting" : "Submit"}
       </Button>
     </>
@@ -68,10 +67,10 @@ const CategoryForm = reduxForm({
   return <CategoryFormFields onSubmit={handleSubmit} submitting={submitting} />;
 });
 
-export const CategoryView = () => {
+export const CategoryView: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const [open, setOpen] = useState(false);
-  const [categoryId, setCategoryId] = useState("");
+  const [open, setOpen] = useState<boolean>(false);
+  const [categoryId, setCategoryId] = useState<string>("");
   const [deleteCategory] = useMutation(DELETE_CATEGORY, {
     refetchQueries: [
       {
@@ -84,7 +83,7 @@ export const CategoryView = () => {
 
   const handleClose = () => setOpen(false);
 
-  const handleOpen = (e, id) => {
+  const handleOpen = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.preventDefault();
     setCategoryId(id);
     setOpen(true);
@@ -117,7 +116,7 @@ export const CategoryView = () => {
             <Paper>
               <Title text="Create Category" />
               <CategoryFormController>
-                {(props) => <CategoryForm {...props} />}
+                {(props: any) => <CategoryForm {...props} />}
               </CategoryFormController>
             </Paper>
           </Grid>

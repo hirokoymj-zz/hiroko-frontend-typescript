@@ -8,6 +8,14 @@ import { FormSkeleton } from "Components/Skeleton/FormSkeleton";
 import { DrawerDialog } from "Components/Dialog/DrawerDialog";
 import { DashboardLayout } from "Components/Layouts/DashboardLayout";
 
+type EditFormProps = {
+  handleSubmit: any;
+  submitting: boolean;
+  loading: boolean;
+  open: boolean;
+  onClose: any;
+};
+
 const CategoryEditFormDrawer = reduxForm({
   form: "Category_Edit_Form",
 })(({ handleSubmit, submitting, loading, open, onClose }) => {
@@ -18,8 +26,7 @@ const CategoryEditFormDrawer = reduxForm({
       onClose={onClose}
       onSubmit={handleSubmit}
       submitting={submitting}
-      submitLabel="Edit"
-    >
+      submitLabel="Edit">
       {loading ? (
         <FormSkeleton fieldCount={2} />
       ) : (
@@ -47,9 +54,13 @@ const CategoryEditFormDrawer = reduxForm({
   );
 });
 
-export const CategoryEditView = () => {
-  const { id } = useParams();
-  const [open, setOpen] = useState(true);
+interface IParams {
+  id: string;
+}
+
+export const CategoryEditView: React.FC = () => {
+  const { id } = useParams<IParams>();
+  const [open, setOpen] = useState<boolean>(true);
   const history = useHistory();
 
   const onClose = () => {
@@ -60,7 +71,7 @@ export const CategoryEditView = () => {
   return (
     <DashboardLayout>
       <CategoryEditFormController categoryId={id}>
-        {(props) => (
+        {(props: any) => (
           <CategoryEditFormDrawer {...props} open={open} onClose={onClose} />
         )}
       </CategoryEditFormController>

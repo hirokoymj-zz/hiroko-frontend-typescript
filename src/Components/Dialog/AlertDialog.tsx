@@ -46,9 +46,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 type Props = {
   open: boolean;
   title: string;
-  content: string;
+  content: string | JSX.Element;
   action: () => void;
   actionLabel: string;
+  cancelLabel?: string;
+  cancel?: () => void;
   onClose: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
