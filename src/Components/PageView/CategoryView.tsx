@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import { useMutation } from "@apollo/react-hooks";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -7,7 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { useSnackbar } from "notistack";
 import { Route, Switch } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { CategoryFormController } from "Components/FormController/CategoryFormController";
 import { FormTextField } from "../Forms/FormTextField";
@@ -19,7 +19,7 @@ import { CATEGORIES } from "Queries/Category";
 import { Title } from "Components/Titles/Title";
 import { CategoryEditView } from "Components/PageView/CategoryEditView";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   button: {
     width: "30%",
     margin: "auto",
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 const CategoryFormFields = ({ onSubmit, submitting }) => {
   const classes = useStyles();
 
@@ -67,7 +68,7 @@ const CategoryForm = reduxForm({
   return <CategoryFormFields onSubmit={handleSubmit} submitting={submitting} />;
 });
 
-export const CategoryView: React.FC = () => {
+export const CategoryView = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [open, setOpen] = useState<boolean>(false);
   const [categoryId, setCategoryId] = useState<string>("");

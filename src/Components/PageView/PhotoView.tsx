@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
 import Grid from "@material-ui/core/Grid";
 
@@ -9,7 +9,7 @@ import img2 from "Assets/img2.jpg";
 import img3 from "Assets/img3.jpg";
 import img4 from "Assets/img4.jpg";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   thumbnail: {
     width: "240px",
     height: "240px",
@@ -30,13 +30,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ImageTemplate = () => {
+const ImageTemplate: React.FC = () => {
   const classes = useStyles();
 
   return <div className={classes.dropzone} />;
 };
 
-export const PhotoView = () => {
+export const PhotoView: React.FC = () => {
   const classes = useStyles();
   const maxCount = 9;
   const photos = [img1, img2, img3, img4];

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import { useParams, useHistory } from "react-router-dom";
 
 import { CategoryEditFormController } from "Components/FormController/CategoryEditFormController";
@@ -8,17 +8,21 @@ import { FormSkeleton } from "Components/Skeleton/FormSkeleton";
 import { DrawerDialog } from "Components/Dialog/DrawerDialog";
 import { DashboardLayout } from "Components/Layouts/DashboardLayout";
 
-type EditFormProps = {
-  handleSubmit: any;
-  submitting: boolean;
+interface IReduxFormData {
+  name: string;
+  abbr: string;
+}
+
+type InjectedProps = InjectedFormProps<IReduxFormData>;
+
+interface IProps extends InjectedProps {
   loading: boolean;
   open: boolean;
   onClose: any;
-};
+}
 
-const CategoryEditFormDrawer = reduxForm({
-  form: "Category_Edit_Form",
-})(({ handleSubmit, submitting, loading, open, onClose }) => {
+const CategoryEditFormDrawerController = (props: IProps) => {
+  const { handleSubmit, submitting, loading, open, onClose } = props;
   return (
     <DrawerDialog
       open={open}
@@ -52,14 +56,14 @@ const CategoryEditFormDrawer = reduxForm({
       )}
     </DrawerDialog>
   );
-});
+};
 
-interface IParams {
-  id: string;
-}
+const CategoryEditFormDrawer = reduxForm<IReduxFormData, IProps>({
+  form: "Category_Edit_Form",
+})(CategoryEditFormDrawerController);
 
-export const CategoryEditView: React.FC = () => {
-  const { id } = useParams<IParams>();
+export const CategoryEditView = () => {
+  const { id } = useParams<{ id: string }>();
   const [open, setOpen] = useState<boolean>(true);
   const history = useHistory();
 
@@ -69,7 +73,7 @@ export const CategoryEditView: React.FC = () => {
   };
 
   return (
-    <DashboardLayout>
+    <DashboardLayout title="Category Edit">
       <CategoryEditFormController categoryId={id}>
         {(props: any) => (
           <CategoryEditFormDrawer {...props} open={open} onClose={onClose} />
